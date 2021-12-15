@@ -1,0 +1,29 @@
+SYSTEM
+	ATOoverETCSGoA2_CONT
+SETS
+	OnBoard;
+	Track;
+	TrackStates;
+	OnBoardStates
+CONSTANTS
+	onboard,
+	track,
+	orderOnBoardForATODriving,
+	orderTrackForManualDrinving,
+	orderOnBoardForManualDriving,
+	orderTrackForATODriving
+PROPERTIES
+	onboard : OnBoard &
+	track : Track &
+	Track ={track} &
+	OnBoard ={onboard} &
+	orderOnBoardForATODriving : OnBoardStates &
+	orderTrackForATODriving : TrackStates &
+	orderTrackForManualDrinving : TrackStates &
+	orderOnBoardForManualDriving : OnBoardStates &
+	orderTrackForManualDrinving /= orderTrackForATODriving &
+	orderOnBoardForManualDriving /= orderOnBoardForATODriving &
+	TrackStates ={orderTrackForATODriving, orderTrackForManualDrinving} &
+	OnBoardStates ={orderOnBoardForATODriving, orderOnBoardForManualDriving}
+END
+

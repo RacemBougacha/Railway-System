@@ -1,0 +1,48 @@
+REFINEMENT
+	RailwaysSystemL1
+REFINES
+	RailwaysSystemL0
+SEES
+	RailwaysSystemL1_CONT,
+	RailwaysSystemL0_CONT
+VARIABLES
+	atooveretcsgoa2State,
+	rsState
+INVARIANT
+	atooveretcsgoa2State : ATOoverETCSGoA2 --> ATOoverETCSGoA2States
+INITIALISATION
+	atooveretcsgoa2State :: {atooveretcsgoa2} -->ATOoverETCSGoA2States ||
+	rsState :: {rs} -->RailwaysSystemStates
+
+EVENTS
+	SetManual =
+	SELECT
+		rsState(rs)=enabled &
+		atooveretcsgoa2State(atooveretcsgoa2)=ATODriving
+	THEN
+		atooveretcsgoa2State(atooveretcsgoa2):=manualDriving
+	END
+ ;
+	Activate ref EnableSystem=
+	SELECT
+		rsState(rs)=disabled
+	THEN
+		rsState(rs):=enabled
+	END
+ ;
+	SetATO =
+	SELECT
+		rsState(rs)=enabled &
+		atooveretcsgoa2State(atooveretcsgoa2)=manualDriving
+	THEN
+		atooveretcsgoa2State(atooveretcsgoa2):=ATODriving
+	END
+ ;
+	Deactivate ref DisableSystem=
+	SELECT
+		rsState(rs)=enabled
+	THEN
+		rsState(rs):=disabled
+	END
+END
+

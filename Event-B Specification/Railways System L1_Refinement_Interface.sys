@@ -1,5 +1,5 @@
 SYSTEM
-	RailwaysSystemL1_Decomp_AbstractVar_Interface
+	RailwaysSystemL1_Refinement_Interface
 SEES
 	RailwaysSystemL1_CONT,
 	RailwaysSystemL0_CONT
